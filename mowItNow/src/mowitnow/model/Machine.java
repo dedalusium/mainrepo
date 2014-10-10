@@ -19,7 +19,8 @@ public abstract class Machine {
 	}
 
 	/**
-	 * Fait avancer la tondeuse d'une case dans la direction courante
+	 * Fait avancer la tondeuse d'une case dans la direction courante TODO:
+	 * ajouter des TU pour chaque cas
 	 * 
 	 * @param gridSizeX
 	 * @param gridSizeY
