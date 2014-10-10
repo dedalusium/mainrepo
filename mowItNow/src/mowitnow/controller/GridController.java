@@ -12,10 +12,6 @@ import mowitnow.model.Mower;
 public class GridController {
 	private Grid grid;
 
-	public GridController(int maxX, int maxY) {
-		this.setGrid(new Grid(maxX, maxY));
-	}
-
 	/**
 	 * @return the grid
 	 */
@@ -31,8 +27,10 @@ public class GridController {
 		this.grid = grid;
 	}
 
-	public void BuildMachines(String path) {
+	public void buildGridContext(String path) {
 		try {
+			int[] size = InstructionBuilder.getGridSize(path);
+			this.grid = new Grid(size[0], size[1]);
 			List<InstructionSet> list = InstructionBuilder.load(path);
 			for (InstructionSet is : list) {
 				Mower mower = new Mower(is);

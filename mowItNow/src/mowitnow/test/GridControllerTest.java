@@ -3,7 +3,7 @@
  */
 package mowitnow.test;
 
-import static org.junit.Assert.*;
+import mowitnow.controller.GridController;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -31,7 +31,8 @@ public class GridControllerTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		GridController controller = new GridController();
+		String path = "input/test.txt";
+		controller.buildGridContext(path);
 	}
-
 }

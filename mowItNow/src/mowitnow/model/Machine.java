@@ -30,7 +30,8 @@ public abstract class Machine {
 		// depasse les dimensions
 		int nextX = x + dir.getDx();
 		int nextY = y + dir.getDy();
-		if (nextX < gridSizeX && nextX > 0 && nextY > 0 && nextY < gridSizeY) {
+		if (nextX <= gridSizeX && nextX >= 0 && nextY >= 0
+				&& nextY <= gridSizeY) {
 			x = nextX;
 			y = nextY;
 			logger.debug("Mower goes to " + dir.name());

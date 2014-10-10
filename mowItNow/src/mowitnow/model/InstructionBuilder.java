@@ -30,4 +30,12 @@ public class InstructionBuilder {
 		br.close();
 		return list;
 	}
+
+	public static int[] getGridSize(String path) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader(path));
+		String line = br.readLine();
+		int[] size = { line.charAt(0), line.charAt(1) };
+		br.close();
+		return size;
+	}
 }
