@@ -1,5 +1,10 @@
 package mowitnow.model;
 
+import javax.swing.event.EventListenerList;
+
+import mowitnow.instruction.InstructionSet;
+import mowitnow.view.ConsoleView;
+
 import org.apache.log4j.Logger;
 
 public abstract class Machine {
@@ -11,6 +16,7 @@ public abstract class Machine {
 	private int yMax;
 	private final Logger logger;
 	private InstructionSet instructions;
+	private EventListenerList modelListeners = new EventListenerList();
 
 	public Machine(InstructionSet is, String name, int xMax, int yMax) {
 		super();
@@ -121,6 +127,25 @@ public abstract class Machine {
 				this.turnRigth();
 			}
 		}
+		// on signale aux listener la fin des instructions
+		this.update();
+
+	}
+
+	public void addModelListener(ModelListener m) {
+		this.modelListeners.add(ModelListener.class, m);
+	}
+
+	public void removeModelListener(ModelListener m) {
+		this.modelListeners.remove(ModelListener.class, m);
+	}
+
+	public void update() {
+		ModelListener[] listenerList = (ModelListener[]) modelListeners
+				.getListeners(ModelListener.class);
+		for (ModelListener listener : listenerList) {
+			listener.modelChanged(new ModelChangedEvent(this));
+		}
 	}
 
 	public String getName() {
@@ -131,4 +156,9 @@ public abstract class Machine {
 		this.name = name;
 	}
 
+	public void draw(ConsoleView c) {
+		String position = this.name + ": " + "I am in (" + this.x + ","
+				+ this.y + ")";
+		c.display(position);
+	}
 }

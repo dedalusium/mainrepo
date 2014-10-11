@@ -1,4 +1,4 @@
-package mowitnow.model;
+package mowitnow.instruction;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

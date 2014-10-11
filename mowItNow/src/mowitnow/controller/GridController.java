@@ -3,13 +3,14 @@ package mowitnow.controller;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
+import mowitnow.instruction.InstructionBuilder;
+import mowitnow.instruction.InstructionSet;
 import mowitnow.model.Grid;
-import mowitnow.model.InstructionBuilder;
-import mowitnow.model.InstructionSet;
 import mowitnow.model.Machine;
 import mowitnow.model.Mower;
+import mowitnow.view.ConsoleView;
+
+import org.apache.log4j.Logger;
 
 /**
  * On prévoit une architecture MVC en prévision d'une supervision
@@ -19,10 +20,19 @@ import mowitnow.model.Mower;
  */
 public class GridController {
 	private Grid grid;
+	private String path;
 	private Logger logger;
 
-	public GridController() {
+	public GridController(String path) {
 		this.logger = Logger.getLogger(GridController.class);
+		this.setPath(path);
+		try {
+			int[] size = InstructionBuilder.getGridSize(path);
+			this.grid = new Grid(size[0], size[1]);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -40,13 +50,12 @@ public class GridController {
 		this.grid = grid;
 	}
 
-	public void buildGridContext(String path) {
+	public void buildGridContext() {
 		try {
-			int[] size = InstructionBuilder.getGridSize(path);
-			this.grid = new Grid(size[0], size[1]);
 			List<InstructionSet> list = InstructionBuilder.load(path);
 			for (InstructionSet is : list) {
-				Mower mower = new Mower(is, String.valueOf(list.indexOf(is)+1),
+				Mower mower = new Mower(is,
+						String.valueOf(list.indexOf(is) + 1),
 						grid.getGridSizeX(), grid.getGridSizeY());
 				grid.getMachines().add(mower);
 			}
@@ -62,9 +71,34 @@ public class GridController {
 		}
 	}
 
-	public void buildAndStart(String path) {
-		this.buildGridContext(path);
+	public void buildAndStart() {
+		this.buildGridContext();
 		this.start();
 	}
 
+	/**
+	 * Ajoute un listner a toutes les machines
+	 * 
+	 * @param consoleView
+	 */
+	public void addListener(ConsoleView consoleView) {
+		for (Machine m : grid.getMachines()) {
+			m.addModelListener(consoleView);
+		}
+	}
+
+	/**
+	 * @return the path
+	 */
+	public String getPath() {
+		return path;
+	}
+
+	/**
+	 * @param path
+	 *            the path to set
+	 */
+	public void setPath(String path) {
+		this.path = path;
+	}
 }

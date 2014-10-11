@@ -1,4 +1,6 @@
-package mowitnow.model;
+package mowitnow.instruction;
+
+import mowitnow.model.Direction;
 
 public class InstructionSet {
 	private String moves;

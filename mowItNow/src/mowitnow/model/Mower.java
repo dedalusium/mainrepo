@@ -1,5 +1,7 @@
 package mowitnow.model;
 
+import mowitnow.instruction.InstructionSet;
+
 /**
  * Model class for mower
  * 

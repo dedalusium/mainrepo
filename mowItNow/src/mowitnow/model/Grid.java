@@ -7,7 +7,7 @@ public class Grid {
 	private List<Machine> machines;
 	private int gridSizeX;
 	private int gridSizeY;
-
+	
 	public Grid(int maxX, int maxY) {
 		this.gridSizeX = maxX;
 		this.gridSizeY = maxY;
@@ -18,7 +18,7 @@ public class Grid {
 	 */
 	public List<Machine> getMachines() {
 		if (machines == null) {
-			//avoid NPE
+			// avoid NPE
 			machines = new ArrayList<Machine>();
 		}
 		return machines;
@@ -46,4 +46,5 @@ public class Grid {
 		return gridSizeX;
 	}
 
+	
 }

@@ -6,9 +6,8 @@ package mowitnow.test;
 import mowitnow.controller.GridController;
 import mowitnow.model.Direction;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -17,35 +16,25 @@ import org.junit.Test;
  */
 public class GridControllerTest {
 
-	private static String path;
+	private static GridController controller;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-//		path = "input/test1Mower.txt";
-		path = "input/test.txt";
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	@Before
+	public void setUp() throws Exception {
+		controller = new GridController("input/test.txt");
 	}
 
 	@Test
 	public void buildGridContexttest() {
-		GridController controller = new GridController();
-		controller.buildGridContext(path);
+		controller.buildGridContext();
 		Assert.assertTrue(controller.getGrid().getMachines().size() == 2);
 	}
 
 	@Test
 	public void buildAndStartTest() {
-		GridController controller = new GridController();
-		controller.buildAndStart(path);
+		controller.buildAndStart();
 		Assert.assertTrue(controller.getGrid().getMachines().get(0).getX() == 1);
 		Assert.assertTrue(controller.getGrid().getMachines().get(0).getY() == 3);
 		Assert.assertTrue(controller.getGrid().getMachines().get(0).getDir() == Direction.NORTH);
