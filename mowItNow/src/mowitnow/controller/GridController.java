@@ -23,16 +23,12 @@ public class GridController {
 	private String path;
 	private Logger logger;
 
-	public GridController(String path) {
+	public GridController(String path) throws IOException {
 		this.logger = Logger.getLogger(GridController.class);
 		this.setPath(path);
-		try {
-			int[] size = InstructionBuilder.getGridSize(path);
-			this.grid = new Grid(size[0], size[1]);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		int[] size = InstructionBuilder.getGridSize(path);
+		this.grid = new Grid(size[0], size[1]);
+
 	}
 
 	/**
@@ -50,6 +46,9 @@ public class GridController {
 		this.grid = grid;
 	}
 
+	/**
+	 * Construit les elements du contextea partir du fichier d instructions
+	 */
 	public void buildGridContext() {
 		try {
 			List<InstructionSet> list = InstructionBuilder.load(path);
@@ -65,12 +64,18 @@ public class GridController {
 		}
 	}
 
+	/**
+	 * lance les deplacements
+	 */
 	public void start() {
 		for (Machine m : this.grid.getMachines()) {
 			m.executeInstructions();
 		}
 	}
 
+	/**
+	 * lance contexte et deplacements
+	 */
 	public void buildAndStart() {
 		this.buildGridContext();
 		this.start();

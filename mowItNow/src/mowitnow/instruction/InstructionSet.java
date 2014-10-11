@@ -2,6 +2,12 @@ package mowitnow.instruction;
 
 import mowitnow.model.Direction;
 
+/**
+ * Represente les instructions pour une machine
+ * 
+ * @author Nordwin
+ *
+ */
 public class InstructionSet {
 	private String moves;
 	private int initX;

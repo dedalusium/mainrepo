@@ -14,7 +14,7 @@ public abstract class Machine {
 	private int y;
 	private int xMax;
 	private int yMax;
-	private final Logger logger;
+	private static final Logger logger = Logger.getLogger(Machine.class);
 	private InstructionSet instructions;
 	private EventListenerList modelListeners = new EventListenerList();
 
@@ -27,22 +27,24 @@ public abstract class Machine {
 		this.xMax = xMax;
 		this.yMax = yMax;
 		this.name = name;
-		this.logger = Logger.getLogger(Machine.class);
+	}
+
+	public Machine() {
+		super();
 	}
 
 	/**
-	 * Fait avancer la tondeuse d'une case dans la direction courante TODO:
-	 * ajouter des TU pour chaque cas
+	 * Fait avancer la tondeuse d'une case dans la direction courante
 	 * 
 	 * @param gridSizeX
 	 * @param gridSizeY
 	 * @return
 	 */
-	private boolean move() {
+	public boolean move(int nbCase) {
 		// on ne fait pas de modulo et on passe a l'instruction suivante si on
 		// depasse les dimensions
-		int nextX = x + dir.getDx();
-		int nextY = y + dir.getDy();
+		int nextX = x + dir.getDx() * nbCase;
+		int nextY = y + dir.getDy() * nbCase;
 		if (nextX <= xMax && nextX >= 0 && nextY >= 0 && nextY <= yMax) {
 			logger.debug("Machine " + name + " goes to " + dir.name()
 					+ " from (" + x + "," + y + ") to (" + nextX + "," + nextY
@@ -60,6 +62,7 @@ public abstract class Machine {
 	 * turn machine's direction on the left
 	 */
 	public void turnLeft() {
+		logger.debug("Machine " + name + " turn left");
 		dir = dir.rotate270();
 	}
 
@@ -67,6 +70,7 @@ public abstract class Machine {
 	 * turn machine's direction on the right
 	 */
 	public void turnRigth() {
+		logger.debug("Machine " + name + " turn right");
 		dir = dir.rotate90();
 	}
 
@@ -115,12 +119,15 @@ public abstract class Machine {
 		this.dir = dir;
 	}
 
+	/**
+	 * execute la suite d'instruction de la machine
+	 */
 	public void executeInstructions() {
 		// lecture des instructions
 		for (char c : instructions.getMoves().toCharArray()) {
 			// plan d'instructions
 			if ('A' == c) {
-				this.move();
+				this.move(1);
 			} else if ('G' == c) {
 				this.turnLeft();
 			} else if ('D' == c) {
@@ -132,19 +139,19 @@ public abstract class Machine {
 
 	}
 
-	public void addModelListener(ModelListener m) {
-		this.modelListeners.add(ModelListener.class, m);
+	public void addModelListener(MachineListener m) {
+		this.modelListeners.add(MachineListener.class, m);
 	}
 
-	public void removeModelListener(ModelListener m) {
-		this.modelListeners.remove(ModelListener.class, m);
+	public void removeModelListener(MachineListener m) {
+		this.modelListeners.remove(MachineListener.class, m);
 	}
 
 	public void update() {
-		ModelListener[] listenerList = (ModelListener[]) modelListeners
-				.getListeners(ModelListener.class);
-		for (ModelListener listener : listenerList) {
-			listener.modelChanged(new ModelChangedEvent(this));
+		MachineListener[] listenerList = (MachineListener[]) modelListeners
+				.getListeners(MachineListener.class);
+		for (MachineListener listener : listenerList) {
+			listener.modelChanged(new MachineChangedEvent(this));
 		}
 	}
 
@@ -161,4 +168,21 @@ public abstract class Machine {
 				+ this.y + ")";
 		c.display(position);
 	}
+
+	public int getxMax() {
+		return xMax;
+	}
+
+	public void setxMax(int xMax) {
+		this.xMax = xMax;
+	}
+
+	public int getyMax() {
+		return yMax;
+	}
+
+	public void setyMax(int yMax) {
+		this.yMax = yMax;
+	}
+
 }

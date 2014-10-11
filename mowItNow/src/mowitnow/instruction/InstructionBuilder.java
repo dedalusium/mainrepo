@@ -7,6 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InstructionBuilder {
+
+	/**
+	 * Construit les objets d instructions a partir de la liste d instructions
+	 * 
+	 * @param path
+	 *            chemin vers le fichier
+	 * @return la liste d instructions
+	 * @throws IOException
+	 */
 	public static List<InstructionSet> load(String path) throws IOException {
 		List<InstructionSet> list = new ArrayList<InstructionSet>();
 		BufferedReader br = new BufferedReader(new FileReader(path));
@@ -37,6 +46,14 @@ public class InstructionBuilder {
 		return list;
 	}
 
+	/**
+	 * Recupere les dimensions de la grille depuis le fichier fourni
+	 * 
+	 * @param path
+	 *            chemin vers le fichier
+	 * @return
+	 * @throws IOException
+	 */
 	public static int[] getGridSize(String path) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(path));
 		String line = br.readLine().replaceAll(" ", "");

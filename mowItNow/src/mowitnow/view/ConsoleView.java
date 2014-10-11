@@ -5,14 +5,14 @@ package mowitnow.view;
 
 import mowitnow.controller.GridController;
 import mowitnow.model.Machine;
-import mowitnow.model.ModelChangedEvent;
-import mowitnow.model.ModelListener;
+import mowitnow.model.MachineChangedEvent;
+import mowitnow.model.MachineListener;
 
 /**
  * @author Nordwin
  *
  */
-public class ConsoleView implements ModelListener {
+public class ConsoleView implements MachineListener {
 
 	public GridController controller;
 
@@ -22,7 +22,7 @@ public class ConsoleView implements ModelListener {
 	}
 
 	@Override
-	public void modelChanged(ModelChangedEvent e) {
+	public void modelChanged(MachineChangedEvent e) {
 		Machine m = (Machine) e.getSource();
 		m.draw(this);
 	}
