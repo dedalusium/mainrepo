@@ -8,8 +8,8 @@ package mowitnow.model;
  */
 public class Mower extends Machine {
 
-	public Mower(InstructionSet is) {
-		super(is);
+	public Mower(InstructionSet is, String name, int xMax, int yMax) {
+		super(is, name, xMax, yMax);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -4,8 +4,10 @@
 package mowitnow.test;
 
 import mowitnow.controller.GridController;
+import mowitnow.model.Direction;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -15,11 +17,15 @@ import org.junit.Test;
  */
 public class GridControllerTest {
 
+	private static String path;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+//		path = "input/test1Mower.txt";
+		path = "input/test.txt";
 	}
 
 	/**
@@ -30,9 +36,18 @@ public class GridControllerTest {
 	}
 
 	@Test
-	public void test() {
+	public void buildGridContexttest() {
 		GridController controller = new GridController();
-		String path = "input/test.txt";
 		controller.buildGridContext(path);
+		Assert.assertTrue(controller.getGrid().getMachines().size() == 2);
+	}
+
+	@Test
+	public void buildAndStartTest() {
+		GridController controller = new GridController();
+		controller.buildAndStart(path);
+		Assert.assertTrue(controller.getGrid().getMachines().get(0).getX() == 1);
+		Assert.assertTrue(controller.getGrid().getMachines().get(0).getY() == 3);
+		Assert.assertTrue(controller.getGrid().getMachines().get(0).getDir() == Direction.NORTH);
 	}
 }

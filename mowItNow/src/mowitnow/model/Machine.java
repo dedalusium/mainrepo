@@ -3,18 +3,24 @@ package mowitnow.model;
 import org.apache.log4j.Logger;
 
 public abstract class Machine {
+	private String name;
 	private Direction dir;
 	private int x;
 	private int y;
+	private int xMax;
+	private int yMax;
 	private final Logger logger;
 	private InstructionSet instructions;
 
-	public Machine(InstructionSet is) {
+	public Machine(InstructionSet is, String name, int xMax, int yMax) {
 		super();
 		this.instructions = is;
 		this.dir = is.getInitDir();
 		this.x = is.getInitX();
 		this.y = is.getInitY();
+		this.xMax = xMax;
+		this.yMax = yMax;
+		this.name = name;
 		this.logger = Logger.getLogger(Machine.class);
 	}
 
@@ -26,16 +32,17 @@ public abstract class Machine {
 	 * @param gridSizeY
 	 * @return
 	 */
-	private boolean move(final int gridSizeX, final int gridSizeY) {
+	private boolean move() {
 		// on ne fait pas de modulo et on passe a l'instruction suivante si on
 		// depasse les dimensions
 		int nextX = x + dir.getDx();
 		int nextY = y + dir.getDy();
-		if (nextX <= gridSizeX && nextX >= 0 && nextY >= 0
-				&& nextY <= gridSizeY) {
+		if (nextX <= xMax && nextX >= 0 && nextY >= 0 && nextY <= yMax) {
+			logger.debug("Machine " + name + " goes to " + dir.name()
+					+ " from (" + x + "," + y + ") to (" + nextX + "," + nextY
+					+ ")");
 			x = nextX;
 			y = nextY;
-			logger.debug("Mower goes to " + dir.name());
 			return true;
 		} else {
 			logger.debug("Mower stay in the same square.");
@@ -105,8 +112,23 @@ public abstract class Machine {
 	public void executeInstructions() {
 		// lecture des instructions
 		for (char c : instructions.getMoves().toCharArray()) {
-			// move turn etc.
+			// plan d'instructions
+			if ('A' == c) {
+				this.move();
+			} else if ('G' == c) {
+				this.turnLeft();
+			} else if ('D' == c) {
+				this.turnRigth();
+			}
 		}
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

@@ -1,5 +1,6 @@
 package mowitnow.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Grid {
@@ -8,13 +9,18 @@ public class Grid {
 	private int gridSizeY;
 
 	public Grid(int maxX, int maxY) {
-		// TODO Auto-generated constructor stub
+		this.gridSizeX = maxX;
+		this.gridSizeY = maxY;
 	}
 
 	/**
 	 * @return the machines
 	 */
 	public List<Machine> getMachines() {
+		if (machines == null) {
+			//avoid NPE
+			machines = new ArrayList<Machine>();
+		}
 		return machines;
 	}
 
