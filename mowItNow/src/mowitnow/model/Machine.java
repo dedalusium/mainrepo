@@ -165,7 +165,7 @@ public abstract class Machine {
 
 	public void draw(ConsoleView c) {
 		String position = this.name + ": " + "I am in (" + this.x + ","
-				+ this.y + ")";
+				+ this.y + ") oriented " + dir.name();
 		c.display(position);
 	}
 
