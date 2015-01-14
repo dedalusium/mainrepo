@@ -1,0 +1,14 @@
+Deploiement avec tomcat et eclipse:
+    Dans le cas d'une erreur de type java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener
+    ajouter dans les "deployment assembly" du projet eclipse les dépendances maven.
+    
+Les chemins indiqués dans le web.xml ou autre sont relatif au dossier WebContent
+ex: <welcome-file-list>
+        <welcome-file>/WEB-INF/view/index.jsp</welcome-file>
+    </welcome-file-list>
+    
+Le parametrage <context:component-scan base-package="<package>" />
+indique le package a scanner pour les controller annotés
+
+Par défaut, pour une url "domain/file/one" spring mvc cherche la vue de nom "one"
+d'apres la configuration du view resolver
