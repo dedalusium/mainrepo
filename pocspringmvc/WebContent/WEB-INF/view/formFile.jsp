@@ -8,7 +8,7 @@
 <title>File creation</title>
 </head>
 <body>
-	<form:form commandName="fileToCreate">
+	<form:form modelAttribute="fileToCreate">
 		<div>
 			<div>Name:</div>
 			<div>
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div>
-			<input type="submit" value="Save Changes" />
+			<input type="submit" value="Create file" />
 		</div>
 	</form:form>
 </body>

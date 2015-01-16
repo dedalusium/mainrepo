@@ -5,6 +5,10 @@ public class File {
 	private String name;
 	private File file;
 
+	public File() {
+		super();
+	}
+
 	public File(int id, String name) {
 		super();
 		this.id = id;
