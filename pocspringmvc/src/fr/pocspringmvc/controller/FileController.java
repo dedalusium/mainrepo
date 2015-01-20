@@ -1,5 +1,7 @@
 package fr.pocspringmvc.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,9 @@ import fr.pocspringmvc.model.File;
 @Controller
 @RequestMapping("/file")
 public class FileController {
+
+	private static final Logger LOGGER = LogManager
+			.getLogger(FileController.class);
 
 	/**
 	 * simple exemple of @ModeleAttribute Mapping of one item
@@ -38,6 +43,7 @@ public class FileController {
 		// en ajoutant Model model en parametre de la methode, on peut
 		// utiliser la ligne ci apres pour l init du model
 		// model.addAttribute("fileToCreate", new File());
+		LOGGER.debug("GET on file creation");
 		return "formFile";
 	}
 
