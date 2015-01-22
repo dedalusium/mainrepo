@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="fr.pocspringmvc.model">
+	<class name="File" table="FILES">
+		<id name="id" column="ID">
+			<generator class="native" />
+		</id>
+		<property name="name" column="NAME" />
+		<property name="path" column="PATH" />
+		<!-- pour les dates, on renseigne explicitement le type voulu car "date"est 
+			représenter de plusiers façon en BDD -->
+		<!-- les types sont traditionnellement determiné par introspection par 
+			hibernate -->
+		<property name="date" type="timestamp" column="UPDATE_DATE" />
+	</class>
+</hibernate-mapping>

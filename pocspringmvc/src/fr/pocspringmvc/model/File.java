@@ -1,9 +1,12 @@
 package fr.pocspringmvc.model;
 
+import java.util.Date;
+
 public class File {
 	private int id;
 	private String name;
-	private File file;
+	private String path;
+	private Date date;
 
 	public File() {
 		super();
@@ -43,6 +46,29 @@ public class File {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
+	}
+
+	/**
+	 * @param date
+	 *            the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

@@ -46,3 +46,8 @@ adapter pour les composant utilisant slf4j:
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
+
+        
+Installation tomcat dans eclipse:
+ - ajouter le tomcat en tant que nouveau serveur
+ - cocher "use tomcat installation"

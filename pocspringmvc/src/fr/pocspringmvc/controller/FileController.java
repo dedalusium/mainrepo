@@ -1,5 +1,7 @@
 package fr.pocspringmvc.controller;
 
+import javax.inject.Inject;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.pocspringmvc.dao.FileDAO;
 import fr.pocspringmvc.model.File;
 
 @Controller
@@ -16,6 +19,9 @@ public class FileController {
 
 	private static final Logger LOGGER = LogManager
 			.getLogger(FileController.class);
+
+	@Inject
+	private FileDAO fileDao;
 
 	/**
 	 * simple exemple of @ModeleAttribute Mapping of one item
