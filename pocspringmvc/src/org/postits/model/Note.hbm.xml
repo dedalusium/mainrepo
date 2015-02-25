@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.postits.model">
+	<!-- Mapping classe <-> Table -->
+	<class name="Note" table="NOTE">
+		<id name="id" column="ID">
+			<generator class="native" />
+		</id>
+		<!-- les types sont traditionnellement determiné par introspection par 
+			hibernate, les noms des membres selon les conventions de nomage des getter/setter 
+			en camel case -->
+		<property name="title" column="TITLE" />
+		<property name="content" column="CONTENT" />
+		<!-- on desactive le lazy loading active par defaut sur les relations many 
+			to one -->
+		<many-to-one name="category" class="org.postits.model.Category"
+			fetch="select" column="CATEGORY_ID" lazy="false" />
+		<!-- pour les dates, on renseigne explicitement le type voulu car "date"est 
+			représenter de plusiers façon en BDD -->
+		<property name="creationDate" type="timestamp" column="CREATE_DATE"
+			update="false" access="field" />
+		<property name="lastModification" type="timestamp" column="UPDATE_DATE"
+			access="field" />
+	</class>
+</hibernate-mapping>

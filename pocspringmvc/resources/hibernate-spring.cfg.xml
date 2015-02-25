@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- pour les configurations très simple on peut indiquer les parametres 
+	des datasource directement dans les properties du session factory, en general 
+	on parametre un session factory par base de donnees -->
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+
+		<!-- JDBC connection pool (use the built-in) -->
+		<property name="connection.pool_size">1</property>
+		<!-- pour eviter de mettre a jour tous les champs d un objet meme si les 
+			valeurs sont inchangees -->
+		<property name="dynamic-update">true</property>
+		<property name="show_sql">true</property>
+		<!-- propriete de gestion du context de session hibernate -->
+		<!-- a desactiver en presence de framework type spring qui fournit sa propre 
+			implementation de l'interface CurrentSessionContext -->
+		<!-- <property name="current_session_context_class">thread</property> -->
+
+		<!-- Disable the second-level cache -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+		<mapping resource="org/postits/model/Note.hbm.xml" />
+		<mapping resource="org/postits/model/Category.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

@@ -1,4 +1,4 @@
-package fr.pocspringmvc.controller;
+package org.postits.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

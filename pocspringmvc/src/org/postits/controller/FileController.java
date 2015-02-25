@@ -1,19 +1,17 @@
-package fr.pocspringmvc.controller;
+package org.postits.controller;
 
 import javax.inject.Inject;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Controller;
+import org.postits.dao.FileDAO;
+import org.postits.model.File;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.pocspringmvc.dao.FileDAO;
-import fr.pocspringmvc.model.File;
-
-@Controller
+//@Controller
 @RequestMapping("/file")
 public class FileController {
 

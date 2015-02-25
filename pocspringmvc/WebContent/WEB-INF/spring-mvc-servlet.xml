@@ -10,9 +10,9 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <import resource="classpath:beans-dao.xml"/>
+	<import resource="classpath:beans-dao.xml" />
 
-	<context:component-scan base-package="fr.pocspringmvc.controller" />
+	<context:component-scan base-package="org.postits.controller" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,5 +23,16 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+
+<!-- 	<mvc:annotation-driven conversion-service="myConversionService" /> -->
+
+<!-- 	<bean id="myConversionService" -->
+<!-- 		class="org.springframework.context.support.ConversionServiceFactoryBean"> -->
+<!-- 		<property name="converters"> -->
+<!-- 			<list> -->
+<!-- 				<bean id="stringToCategoryConverter" class="org.postits.utils.StringToCategoryConverter"/> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 
 </beans>

@@ -1,4 +1,4 @@
-package fr.pocspringmvc.model;
+package org.postits.model;
 
 import java.util.Date;
 

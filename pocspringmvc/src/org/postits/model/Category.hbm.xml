@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.postits.model">
+	<!-- Mapping classe <-> Table -->
+	<class name="Category" table="CATEGORY">
+		<id name="id" column="ID">
+			<generator class="native" />
+		</id>
+		<property name="name" type="string" column="NAME" />
+		<!-- on active le lazy loading pour eviter de saturer la memoire -->
+		<set name="notes" table="NOTE" inverse="true" lazy="true" fetch="select">
+			<key column="CATEGORY_ID" />
+			<one-to-many class="org.postits.model.Note" />
+		</set>
+	</class>
+</hibernate-mapping>

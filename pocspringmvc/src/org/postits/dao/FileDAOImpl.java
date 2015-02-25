@@ -1,4 +1,4 @@
-package fr.pocspringmvc.dao;
+package org.postits.dao;
 
 import java.util.List;
 
@@ -6,8 +6,7 @@ import javax.inject.Inject;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-
-import fr.pocspringmvc.model.File;
+import org.postits.model.File;
 
 public class FileDAOImpl implements FileDAO {
 

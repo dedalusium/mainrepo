@@ -1,8 +1,8 @@
-package fr.pocspringmvc.dao;
+package org.postits.dao;
 
 import java.util.List;
 
-import fr.pocspringmvc.model.File;
+import org.postits.model.File;
 
 public interface FileDAO {
 	public void createFile(File file);

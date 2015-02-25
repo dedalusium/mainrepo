@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Post-it</title>
+<title>${note.title}</title>
 </head>
 <body>
-	<h1>Index</h1>
-	<div>
-		<a href="/postits/note/all">Liste des notes</a>
-	</div>
+	<h1>${note.title}</h1><h2>(${note.category})</h2>
+	<div>${note.content}</div>
+	<div>last modification: ${note.lastModification}</div>
 </body>
 </html>
