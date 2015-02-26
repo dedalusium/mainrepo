@@ -5,6 +5,7 @@
 <hibernate-mapping package="org.postits.model">
 	<!-- Mapping classe <-> Table -->
 	<class name="Note" table="NOTE">
+		<cache usage="read-write" />
 		<id name="id" column="ID">
 			<generator class="native" />
 		</id>

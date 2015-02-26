@@ -61,7 +61,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public Map<String, String> loadCategories() {
 		@SuppressWarnings("unchecked")
 		List<Category> catList = sessionFactory.getCurrentSession()
-				.createCriteria(Category.class).list();
+				.createCriteria(Category.class).setCacheable(true).list();
+
 		Map<String, String> map = catList.stream().collect(
 				Collectors.toMap(Category::getName, Category::getName));
 		return map;
@@ -74,8 +75,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 	 */
 	@Override
 	public Category getCategoryFromName(String name) {
-		Query q = sessionFactory.getCurrentSession().createQuery(
-				"from Category as c where c.name=:name");
+		Query q = sessionFactory.getCurrentSession()
+				.createQuery("from Category as c where c.name=:name")
+				.setCacheable(true);
 		q.setParameter("name", name);
 		return (Category) q.uniqueResult();
 	}

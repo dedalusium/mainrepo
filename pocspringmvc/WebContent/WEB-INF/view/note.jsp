@@ -7,7 +7,10 @@
 <title>${note.title}</title>
 </head>
 <body>
-	<h1>${note.title}</h1><h2>(${note.category})</h2>
+	<h1>${note.title}</h1>
+	<h2>${note.category.name}</h2>
+	<div>(${note.category})</div>
+	<br>
 	<div>${note.content}</div>
 	<div>last modification: ${note.lastModification}</div>
 </body>

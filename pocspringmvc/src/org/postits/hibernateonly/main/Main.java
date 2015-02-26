@@ -9,6 +9,12 @@ import org.postits.model.Note;
 public class Main {
 
 	public static void main(String[] args) {
+		// testReadAndWrite();
+		secondCacheLevelTest();
+		HibernateUtil.getSessionFactory().close();
+	}
+
+	private static void testReadAndWrite() {
 		Main mgr = new Main();
 
 		List<Note> notes = mgr.listNotes();
@@ -32,7 +38,6 @@ public class Main {
 
 		}
 
-		HibernateUtil.getSessionFactory().close();
 	}
 
 	private void createAndStoreEvent(Note note) {
@@ -49,12 +54,42 @@ public class Main {
 	private List<Note> listNotes() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-
 		@SuppressWarnings("unchecked")
 		List<Note> result = session.createQuery("from Note").list();
 		session.getTransaction().commit();
 
 		return result;
+	}
+
+	private static void secondCacheLevelTest() {
+		Note note = new Note();
+		note.setContent("note pour test de cache");
+		note.setTitle("Test de cache");
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		session.save(note);
+		System.out.println("Creation de l objet en BDD");
+		session.getTransaction().commit();
+		System.out.println("Commit en BDD");
+		note = (Note) session.load(Note.class, note.getId());
+		System.out
+				.println("Note: " + note.getTitle() + "/" + note.getContent());
+		System.out.println("Vidage du cache de session (premier niveau)");
+		session.clear();
+		note = (Note) session.load(Note.class, note.getId());
+		System.out
+				.println("Note: " + note.getTitle() + "/" + note.getContent());
+		System.out.println("Fermeture de la premiere session hibernate");
+		session.close();
+
+		System.out.println("Ouverture d'une seconde session hibernate");
+		Session secondSession = HibernateUtil.getSessionFactory().openSession();
+		secondSession.beginTransaction();
+		note = (Note) secondSession.load(Note.class, note.getId());
+		System.out
+				.println("Note: " + note.getTitle() + "/" + note.getContent());
+		System.out.println("Fermeture de la seconde session hibernate");
+		secondSession.close();
 	}
 
 }

@@ -12,16 +12,25 @@
 		<property name="connection.username">hibernate</property>
 		<property name="connection.password">hibernate</property>
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
-		
+
 		<!-- JDBC connection pool (use the built-in) -->
 		<property name="connection.pool_size">1</property>
 
 		<property name="show_sql">true</property>
 		<!-- Enable Hibernate's automatic session context management -->
-		<property name="current_session_context_class">thread</property>
+		<property name="current_session_context_class">managed</property>
 
 		<!-- Disable the second-level cache -->
-		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+		<!-- <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property> -->
+
+		<!-- enable second level cache and query cache -->
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.use_query_cache">true</property>
+		<!-- cherche le fichier ehcache.xml dans le classpath par defaut -->
+		<property name="net.sf.ehcache.configurationResourceName">/my-ehcache.xml</property>
+		
 		<mapping resource="org/postits/model/Note.hbm.xml" />
+		<mapping resource="org/postits/model/Category.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

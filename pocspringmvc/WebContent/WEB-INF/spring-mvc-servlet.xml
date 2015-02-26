@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:cache="http://www.springframework.org/schema/cache"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -13,6 +14,7 @@
 	<import resource="classpath:beans-dao.xml" />
 
 	<context:component-scan base-package="org.postits.controller" />
+	<mvc:annotation-driven />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -24,15 +26,15 @@
 		</property>
 	</bean>
 
-<!-- 	<mvc:annotation-driven conversion-service="myConversionService" /> -->
+	<!-- <mvc:annotation-driven conversion-service="myConversionService" /> -->
 
-<!-- 	<bean id="myConversionService" -->
-<!-- 		class="org.springframework.context.support.ConversionServiceFactoryBean"> -->
-<!-- 		<property name="converters"> -->
-<!-- 			<list> -->
-<!-- 				<bean id="stringToCategoryConverter" class="org.postits.utils.StringToCategoryConverter"/> -->
-<!-- 			</list> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<!-- <bean id="myConversionService" -->
+	<!-- class="org.springframework.context.support.ConversionServiceFactoryBean"> -->
+	<!-- <property name="converters"> -->
+	<!-- <list> -->
+	<!-- <bean id="stringToCategoryConverter" class="org.postits.utils.StringToCategoryConverter"/> -->
+	<!-- </list> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 
 </beans>

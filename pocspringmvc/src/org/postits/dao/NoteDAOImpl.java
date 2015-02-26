@@ -67,7 +67,7 @@ public class NoteDAOImpl implements NoteDAO {
 	@Override
 	public List<Note> readAllNotes() {
 		return sessionFactory.getCurrentSession().createQuery("from Note")
-				.list();
+				.setCacheable(true).list();
 	}
 
 	@Override
