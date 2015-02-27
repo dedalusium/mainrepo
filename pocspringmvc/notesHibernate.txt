@@ -1,0 +1,36 @@
+﻿Notes Hibernate:					
+						
+						
+=> requetes sql standard pour récupérer les résultats en BDD 
+=> .list() pour recuperer une liste
+=> .iterate() pour parcourir les resultat sans plomber les perfs
+=> les objets récupérés sont "persistants"
+=> on peut paginer les resultats avec q.setFirstResult(20); et q.setMaxResults(10); en mode offline
+=> en mode online on utilise .scroll(), la BDD doit etre accessible
+=> on peut utiliser les "named parameters" comme dans les jdbc templates
+=> les anotations @NamedQuery and @NamedQueries permettent de définir des requetes avec des scopes plus larges
+	ou bien dans un fichier de mapping 
+	<query name="ByNameAndMaximumWeight"><![CDATA[
+		from eg.DomesticCat as cat
+				where cat.name = ?
+				and cat.weight > ?
+	] ]></query>															
+=> createQuery et CreateFilter fonctionnent avec des string type requete sql
+=> createCriteria fonctionnent avec une API objet
+=> faire un flush sur la session, rendent les modifications persistentes en BDD dans la transaction et vide la mémoire java. Le commit n'est pas effectué.
+	avec un batch cela permet de pas pas faire exploser la mémoire et de ne pas etre forcé de faire un commit a chaque flush. On peut ainsi faire un rollback de plusieurs flush
+	
+=> implementation de la persistence:
+
+save()/persist() => save associe un ID a lobjet immediatement / persist le fait au moment du flush de session. Si un insert doit etre execute pour obtenir l id, save le fait immediatement inependament de la presence de la transaction contrairement a persist()
+load()/get() => load renvoi un proxy sur l objet demande et ne charge l objet qu au moment demande (lazy loading) / get charge l objet directement
+merge()/update() => merge verifie la presence de l instance a mettre a jour dans la BDD / update ne fait pas cette verification
+
+
+=> accessibilité des champs a préciser au niveau global/class/propriété par l' attribut access="field(direct)/property(par les getters/setters)/ClassName"
+
+=> Cache hibernate de premier niveau est lié a la session
+	=> il ne voit pas les changement de la BDD dans la session en cours
+	=> on peut vider/supprimer un objet/verifier que l'objet est dans le cache
+	=> activé par défaut
+	=> pour des traitements batch, le cache doit etre vider a intervalle regulier pour ne pas saturer la memoire

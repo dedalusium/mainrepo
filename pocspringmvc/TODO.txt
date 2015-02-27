@@ -1,0 +1,7 @@
+=> Add authentification with spring mvc
+=> Add front end with angular JS
+=> Add api rest under /api
+=> Add attachment to Notes, send these attachment directly by the application server or another (nodeJs ?)
+=> add units test (jUnit & mockito
+=> add service/business layer
+=> add constraints in DB
