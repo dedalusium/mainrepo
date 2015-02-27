@@ -12,13 +12,13 @@
 		<div>
 			<div>Title:</div>
 			<div>
-				<form:input path="title" text="${note.title}" />
+				<form:input path="title" text="${newNote.title}" />
 			</div>
 		</div>
 		<div>
 			<div>Content:</div>
 			<div>
-				<form:input path="content" text="${note.content}" />
+				<form:input path="content" text="${newNote.content}" />
 			</div>
 		</div>
 		<div>
@@ -35,5 +35,7 @@
 			<input type="submit" value="Create Note" />
 		</div>
 	</form:form>
+	<div>${newNote.creationDate}</div>
+	<div>${newNote.lastModification}</div>
 </body>
 </html>

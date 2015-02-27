@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="org.postits.model">
 	<!-- Mapping classe <-> Table -->
-	<class name="Note" table="NOTE">
+	<class name="Note" table="NOTE" dynamic-insert="true" dynamic-update="true">
 		<cache usage="read-write" />
 		<id name="id" column="ID">
 			<generator class="native" />

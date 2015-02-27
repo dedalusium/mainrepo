@@ -12,6 +12,7 @@
 	<div>(${note.category})</div>
 	<br>
 	<div>${note.content}</div>
-	<div>last modification: ${note.lastModification}</div>
+	<div>date creation: ${note.creationDate}</div>
+	<div>dernière modification: ${note.lastModification}</div>
 </body>
 </html>

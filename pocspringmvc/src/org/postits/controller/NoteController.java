@@ -56,12 +56,12 @@ public class NoteController {
 
 	@Transactional
 	@RequestMapping(value = { "/create" }, method = { RequestMethod.POST })
-	public ModelAndView saveNote(@ModelAttribute("newNote") NoteForm noteForm) {
+	public String saveNote(@ModelAttribute("newNote") NoteForm noteForm) {
 		Note note = new Note();
 		BeanUtils.copyProperties(noteForm, note);
 		note.setCategory(categoryDAO.getCategoryFromName(noteForm.getCategory()));
 		noteDAO.createNote(note);
-		return new ModelAndView("note", "note", note);
+		return "redirect:/note/" + note.getId();
 	}
 
 	@Transactional
@@ -77,14 +77,14 @@ public class NoteController {
 
 	@Transactional
 	@RequestMapping(value = { "/update/{id}" }, method = { RequestMethod.POST })
-	public ModelAndView updateNote(@PathVariable long id,
+	public String updateNote(@PathVariable long id,
 			@ModelAttribute("newNote") NoteForm noteForm) {
 		Note note = new Note();
 		BeanUtils.copyProperties(noteForm, note);
 		note.setId(id);
 		note.setCategory(categoryDAO.getCategoryFromName(noteForm.getCategory()));
 		noteDAO.updateNote(note);
-		return new ModelAndView("note", "note", note);
+		return "redirect:/note/" + id;
 	}
 
 	@Transactional
