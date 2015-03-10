@@ -1,0 +1,42 @@
+Notes angular:
+
+ng-app utilise la directive ngApp afin de charger angular sur tout ou partie du html.
+ng-controller="<controllerName>" permet de définir le scope du controller invoqué. Ce scope hérite du root prototype (defini par ng-app).
+Les enfant du tag possedant pour attribut ng-controller, peuvent acceder aux variables ajoutées au scopes du controller.
+ng-repeat permet de repeter un element html en tant que template pour chaque element d'une collection.
+Le service $controller permet de charger un controller par son nom. Cela permet par exemple la mise en place de TU sur une instance construite par angular et non pas
+cree par un "new".
+Lors de end to end test, le binding de variables peut apparaitre en erreur si on utilise directement {{<expression>}} (l'expression {{}} apparait brievement 
+avant d etre remplacer par sa valeur). A la place, utiliser ng-bind-template pour definir
+le template de binding (un peu comme un printf en C ou Java)
+
+la fonction filter permet de filter des tableaux en fonction de criteres
+la fonction order (filtre) by permet d'ordonner des tableaux en fonction de criteres
+
+Les variables qui commence par $ sont fournis par angular. Leurs propriété préfixées par $$ sont considérées comme privée et donc ne doivent pas etre accedées ou modifées
+En passante ces variable en parametre des fonctions d'instanciation des controller, on recupere une instance du service par l'injection de dépendance d'angular
+
+On peut rendre l'instanciation du controller par l'injection de dépendance de maniere explicite.
+Dans le TU on doit instancier les contextes egalement (step 5 tuto angular officiel)
+
+la directive ng-src sur une <img> permet de ne pas faire de requete http pour recuperer une image a une localisation qui serait invalide:
+mieux vaut : <img ng-src="{{image.url}}"> que <img src="{{image.url}}">
+Cela evite au navigateur d essayer de charger l'image avant que angular ait le temps d injecter la valeur de l url
+
+Le service $route permet de définir un parametrage de controller et de template html en fonction d'une url. La directive ng-view permet d indiquet l endroit ou charger le template 
+dans un html.
+on peut définir des variables dans les urls du style when('/phones/:phoneId')
+
+Lors de l'instanciation de l'app on charge tous les modules dont elle dépend comme par ex ngRoute ou bien un module custom qui possède une partie du 
+découpage des controllers.
+
+ng-click permet de definir un handler au click sur un element du dom
+
+le service ngResource fournis une couche d'absctraction a la manipulation d'ajax. Il y a des built-in function pour des opérations CRUD et on peut définir egalement des
+callback custom sur un appel HTTP
+
+Sujets a regarder: 
+bower (client-side dependencies)
+TU angular 
+End to end tests (protractor)
+Directive ng-model
