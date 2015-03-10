@@ -1,0 +1,30 @@
+<div ng-hide="editInfoMode">
+    <div>{{track.title}}</div>
+    <div>{{track.artist}}</div>
+    <div>{{track.year}}</div>
+</div>
+<div ng-show="editInfoMode">
+    Title: <input type="text" ng-model="track.title">
+    Artist: <input type="text" ng-model="track.artist">
+    Year: <input type="text" ng-model="track.year">
+</div>
+<input type="button" ng-click="switchInfoMode()" value="{{infoButtonText}}">
+<div>
+    <div>Tablatures <input type="button" ng-click="switchTabsMode()" value="{{tabsButtonText}}"> </div>
+    <div ng-hide="editTabsMode">{{track.tablature}}</div>
+    <textarea ng-show="editTabsMode" ng-model="track.tablature" ></textarea>
+</div>
+<div>
+    <div>Lyrics: <input type="button" ng-click="switchLyricsMode()" value="{{lyricsButtonText}}"></div>
+    <div ng-hide="editLyricsMode">{{track.lyrics}}</div>
+    <textarea ng-show="editLyricsMode" ng-model="track.lyrics"></textarea>
+</div>
+<div>Instruments:
+    <div ng-repeat="instrument in track.instruments"> => {{instrument}}</div>
+</div>
+<div>Tutoriel:</div>
+<div>{{track.tutorial}}</div>
+
+
+
+

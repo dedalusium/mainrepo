@@ -1,0 +1,45 @@
+[
+  {
+    "id":"ballad_of_the_mighty_i",
+    "title": "Ballad of the Mighty I",
+    "artist": "Noel Gallagher's High Flying Birds",
+    "year": 2015,
+    "tablature": false,
+    "lyrics": false,
+    "instruments": ["guitare"],
+    "tutorial": false
+  },
+  {
+    "id": "record_machine",
+    "title": "(Wanna Live In a Dream In My) Record Machine",
+    "artist": "Noel Gallagher's High Flying Birds",
+    "year": 2011,
+    "tablature": true,
+    "lyrics": true,
+    "instruments": ["guitare"],
+    "tutorial": true
+  },
+  {
+    "id":"la_fee_verte",
+    "title": "La Fee Verte",
+    "artist": "Kasabian",
+    "year": 2011,
+    "tablature": false,
+    "lyrics": true,
+    "instruments": ["guitare"],
+    "tutorial": true
+  },
+  {
+    "id":"crying_lightning",
+    "title": "Crying Lighting",
+    "artist": "Arctic Monkeys",
+    "year": 2009,
+    "tablature": false,
+    "lyrics": true,
+    "instruments": [
+      "guitare",
+      "drums"
+    ],
+    "tutorial": false
+  }
+]

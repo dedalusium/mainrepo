@@ -1,0 +1,10 @@
+/* app css stylesheet */
+
+#list {
+    margin-left:  20%;
+    padding-left: 2%;
+}
+#textbox {
+    float: left;
+    width: 20%;
+}

@@ -1,0 +1,14 @@
+<input type="text" ng-model="queryString" id="textbox">
+<div id="list">
+    <div ng-repeat="track in tracks | filter:queryString">
+        <div>title:<a href="#/track/{{track.id}}">{{track.title}}</a></div>
+        <div>artist:{{track.artist}}</div>
+        <div>year:{{track.year}}</div>
+        <div>tablature:{{track.tablature}}</div>
+        <div>lyrics:{{track.lyrics}}</div>
+        <div>instruments:</div>
+        <div ng-repeat="instrument in track.instruments"> => {{instrument}}</div>
+        <div>tutorial:{{track.tutorial}}</div>
+        <br>
+    </div>
+</div>
