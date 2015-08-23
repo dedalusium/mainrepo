@@ -6,9 +6,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-loader": "~1.4.0",
-    "angular-mocks": "~1.4.0",
-    "bootstrap": "~3.3"
+    "angular": "^1.4.0",
+    "angular-loader": "^1.4.0",
+    "angular-mocks": "^1.4.0",
+    "bootstrap": "^3.3"
   }
 }
