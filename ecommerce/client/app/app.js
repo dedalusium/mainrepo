@@ -1,12 +1,20 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+var myapp = angular.module('ecommerce', ['ui.router']);
+myapp.config(function ($stateProvider, $urlRouterProvider) {
+  //
+  // For any unmatched url, redirect to /
+  $urlRouterProvider.otherwise("/index");
+  //
+  // Now set up the states
+  $stateProvider
+    .state('index', {
+      url: "/index",
+      templateUrl: "main.html"
+    })
+});
+
+myapp.run(function ($rootScope) {
+  $rootScope.$on("$stateChangeError", console.log.bind(console));
+});
