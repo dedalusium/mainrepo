@@ -11,7 +11,10 @@ myapp.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('index', {
       url: "/index",
-      templateUrl: "main.html"
+      templateUrl: "main.html",
+      controller: function($scope){
+        $scope._=_;
+      }
     })
 });
 
