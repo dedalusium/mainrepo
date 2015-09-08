@@ -12,8 +12,13 @@ myapp.config(function ($stateProvider, $urlRouterProvider) {
     .state('index', {
       url: "/index",
       templateUrl: "main.html",
-      controller: function($scope){
-        $scope._=_;
+      controller: function ($scope) {
+        $scope.articleList = [
+          {name: "Article title", description: "This is a description"},
+          {name: "", description: ""},
+          {name: "", description: ""}
+        ];
+        $scope.shelfList = {};
       }
     })
 });
