@@ -5,41 +5,82 @@ var myapp = angular.module('ecommerce', ['ui.router']);
 myapp.config(function ($stateProvider, $urlRouterProvider) {
 
   // For any unmatched url, redirect to /index
-  $urlRouterProvider.otherwise("/index");
+  $urlRouterProvider.otherwise("/");
 
   $stateProvider.state({
-    name: 'index',
-    url: "/index",
+    name: 'home',
+    url: "/",
     views: {
       '': {templateUrl: 'html/views/main.html'},
-      'header@index': {
-        templateUrl: "html/views/header.html",
+      'header@home': {
+        templateUrl: "html/views/home/header.html",
         controller: function ($scope) {
 
         }
       },
-      'leftSidebar@index': {
-        templateUrl: "html/views/leftSidebar.html",
+      'leftSidebar@home': {
+        templateUrl: "html/views/home/leftSidebar.html",
         controller: function ($scope) {
           $scope.shelfList = {};
         }
       },
-      'content@index': {
-        templateUrl: "html/views/content.html",
+      'content@home': {
+        templateUrl: "html/views/home/content.html",
         controller: function ($scope) {
           $scope.articleList = [
             {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
           ];
         }
       },
-      'rightSidebar@index': {
-        templateUrl: "html/views/rightSidebar.html",
+      'rightSidebar@home': {
+        templateUrl: "html/views/home/rightSidebar.html",
         controller: function ($scope) {
 
         }
       },
-      'footer@index': {
-        templateUrl: "html/views/footer.html",
+      'footer@home': {
+        templateUrl: "html/views/home/footer.html",
+        controller: function ($scope) {
+
+        }
+      }
+    }
+  });
+
+
+  $stateProvider.state({
+    name: 'shelf',
+    url: "/shelf",
+    views: {
+      '': {templateUrl: 'html/views/main.html'},
+      'header@shelf': {
+        templateUrl: "html/views/shelf/header.html",
+        controller: function ($scope) {
+
+        }
+      },
+      'leftSidebar@shelf': {
+        templateUrl: "html/views/shelf/leftSidebar.html",
+        controller: function ($scope) {
+          $scope.shelfList = {};
+        }
+      },
+      'content@shelf': {
+        templateUrl: "html/views/shelf/content.html",
+        controller: function ($scope) {
+          $scope.articleList = [
+            {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+          ];
+        }
+      },
+      'rightSidebar@shelf': {
+        templateUrl: "html/views/shelf/rightSidebar.html",
+        controller: function ($scope) {
+
+        }
+      },
+      'footer@shelf': {
+        templateUrl: "html/views/shelf/footer.html",
         controller: function ($scope) {
 
         }
